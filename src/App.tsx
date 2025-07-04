@@ -1,6 +1,7 @@
 import Home from "./general/Home";
 import Header from "./navigation/Header";
 import AccountsPage from "./accounts/AccountsPage.tsx";
+import TransactionsPage from "./transactions/TransactionsPage.tsx";
 
 function App() {
     return (
@@ -8,6 +9,7 @@ function App() {
             <Header/>
             <Home/>
             <AccountsPage/>
+            <TransactionsPage/>
         </>
     );
 }
