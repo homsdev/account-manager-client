@@ -3,7 +3,7 @@ import {Box, Container, Typography} from "@mui/material";
 import {TransactionCategoryExpense} from "./TransactionCategoryExpense.tsx";
 import {TransactionForm} from "./TransactionForm.tsx";
 
-export default function TransactionsPage() {
+export default function TransactionsSection() {
     return (
         <Container sx={{mt: 4, display: "flex", gap: 3}}>
             <Box sx={{
