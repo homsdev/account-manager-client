@@ -1,6 +1,7 @@
 import Box from "@mui/material/Box";
 import LinearProgress from "@mui/material/LinearProgress";
 import Typography from "@mui/material/Typography";
+import * as React from "react";
 
 interface TransactionCategoryExpenseProps {
     categoryName: string;
@@ -22,7 +23,7 @@ export const TransactionCategoryExpense: React.FC<TransactionCategoryExpenseProp
         totalExpenses,
         percentage,
     }) => {
-
+    
     return (
         <Box sx={{padding: 2}}>
             <Box sx={{display: "flex", justifyContent: "space-between", mb: 0}}>

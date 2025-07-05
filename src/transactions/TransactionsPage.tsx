@@ -1,6 +1,7 @@
 import AnalyticsOutlinedIcon from '@mui/icons-material/AnalyticsOutlined';
 import {Box, Container, Typography} from "@mui/material";
 import {TransactionCategoryExpense} from "./TransactionCategoryExpense.tsx";
+import {TransactionForm} from "./TransactionForm.tsx";
 
 export default function TransactionsPage() {
     return (
@@ -25,14 +26,14 @@ export default function TransactionsPage() {
                 </Box>
             </Box>
             <Box sx={{
-                flex: 2,
+                flex: 1,
                 borderRadius: 2,
                 borderColor: "lightgray",
                 borderWidth: "1px",
                 borderStyle: "solid",
                 display: "flex"
             }}>
-                Here goes the form
+                <TransactionForm isCreating={true}/>
             </Box>
         </Container>
     )
