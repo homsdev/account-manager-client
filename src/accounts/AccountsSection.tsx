@@ -12,6 +12,7 @@ import {AccountInfoCard} from "./AccountInfoCard.tsx";
 
 interface AccountSectionProps {
     accounts: Account[];
+    onChangeAccount: (account: Account) => void;
 }
 
 const styles = {
@@ -33,10 +34,20 @@ const styles = {
     accountsBox: {
         display: "flex",
         mb: 4
-    }
+    } as SxProps<Theme>,
+    accountBox: {
+        flex: 1,
+        mx: 2,
+        cursor: "pointer",
+    } as SxProps<Theme>,
 }
 
-const AccountsSection: React.FC<AccountSectionProps> = ({accounts}) => {
+const AccountsSection: React.FC<AccountSectionProps> = ({accounts, onChangeAccount}) => {
+
+    function handleSelectAccount(account: Account) {
+        onChangeAccount(account);
+    }
+
     return (
         <Container
             sx={styles.container}
@@ -50,10 +61,12 @@ const AccountsSection: React.FC<AccountSectionProps> = ({accounts}) => {
                 </Box>
                 <Box sx={styles.accountsBox}>
                     {accounts?.map((account) => (
-                        <Box key={account.accountId} sx={{flex: 1, mx: 2}}>
+                        <Box key={account.accountId} sx={styles.accountBox}
+                             onClick={() => handleSelectAccount(account)}>
                             <AccountInfoCard
                                 accountName={account.alias}
-                                accountBalance={account.balance}/>
+                                accountBalance={account.balance}
+                            />
                         </Box>
                     ))}
                 </Box>
