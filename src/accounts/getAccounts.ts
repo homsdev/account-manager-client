@@ -1,4 +1,4 @@
-import type {ApiResponse} from "./types.ts";
+import type {ApiGetAccountsResponse} from "./types.ts";
 
 export async function getAccounts() {
     const baseURL = "http://localhost:8080";
@@ -13,7 +13,7 @@ export async function getAccounts() {
 
 export function assertIsApiResponse(
     response: unknown
-): asserts response is ApiResponse {
+): asserts response is ApiGetAccountsResponse {
 
     const {data} = response;
 

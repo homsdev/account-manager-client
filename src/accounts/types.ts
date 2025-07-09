@@ -4,8 +4,14 @@ export type Account = {
     alias: string
 }
 
-export type ApiResponse = {
+export type ApiGetAccountsResponse = {
     data: Account[],
+    timestamp: string,
+    _links: object
+}
+
+export type ApiPostAccountResponse = {
+    data: Account,
     timestamp: string,
     _links: object
 }
