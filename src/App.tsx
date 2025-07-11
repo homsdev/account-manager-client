@@ -55,13 +55,14 @@ function App() {
     };
 
     const handleOnAddAccount = (account: Account) => {
+        console.info("Executing handleOnAddAccount")
         console.log("App tsx Received account:", account);
-        postAccount(account)
+        return postAccount(account)
             .then(res => {
-                console.log("Setting created account:");
                 setCreatedAccount(res.data);
-                console.log("Proceding to reset form");
-            });
+                return true;
+            })
+            .catch(err => console.error(err));
     }
 
     return (

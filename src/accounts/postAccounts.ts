@@ -1,7 +1,9 @@
 import type {Account, ApiGetAccountsResponse, ApiPostAccountResponse} from "./types.ts";
 import {assertIsApiResponse} from "./getAccounts.ts";
 
-export async function postAccount(account: Account) {
+export async function postAccount(
+    account: Account
+) {
     const baseEndpoint = "http://localhost:8080";
     const url = "api/accounts"
     const response = await fetch(`${baseEndpoint}/${url}`, {
@@ -16,7 +18,7 @@ export async function postAccount(account: Account) {
     });
 
     const body = (await response.json()) as unknown;
-    assertIsApiResponse(body);
+    assertIsApiPostAccountResponse(body);
 
     return body;
 }

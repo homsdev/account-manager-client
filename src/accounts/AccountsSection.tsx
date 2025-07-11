@@ -10,13 +10,13 @@ import type {Account} from "./types.ts";
 import type {SxProps, Theme} from "@mui/material";
 
 import {AccountInfoCard} from "./AccountInfoCard.tsx";
-import {FormEvent, useState} from "react";
+import {FormEvent, useRef, useState} from "react";
 import {InputAdornment} from "@mui/material";
 
 interface AccountSectionProps {
     accounts: Account[];
     onChangeAccount: (account: Account) => void;
-    onAddAccount: (account: Account) => void;
+    onAddAccount: (account: Account) => Promise<boolean>;
 }
 
 const styles = {
@@ -64,21 +64,28 @@ const AccountsSection: React.FC<AccountSectionProps> = (
     }) => {
 
     const [showModal, setShowModal] = useState(false);
+    const accountFormRef = useRef<HTMLFormElement>(null);
 
     const handleSelectAccount = (account: Account) => {
         onChangeAccount(account);
     }
 
     const handleCreateAccount = (e: FormEvent<HTMLFormElement>) => {
+        console.info("Executing handleCreateAccount");
         e.preventDefault();
-        console.log("Creating new account");
         const formData = new FormData(e.currentTarget);
         const account = {
             alias: formData.get("alias"),
             balance: formData.get("balance"),
         } as Account;
-        console.log("Creating account", account);
-        onAddAccount(account);
+
+        onAddAccount(account)
+            .then(success => {
+                if (success && accountFormRef.current) {
+                    accountFormRef.current.reset();
+                    setShowModal(false);
+                }
+            });
     }
 
     const handleOpenModal = () => {
@@ -94,7 +101,11 @@ const AccountsSection: React.FC<AccountSectionProps> = (
             sx={styles.container}
         >
             <Modal open={showModal} onClose={handleOnCloseModal}>
-                <Box sx={styles.modalBox} component="form" onSubmit={(e) => handleCreateAccount(e)}>
+                <Box sx={styles.modalBox}
+                     component="form"
+                     onSubmit={(e) => handleCreateAccount(e)}
+                     ref={accountFormRef}
+                >
                     <Typography id="modal-modal-title" variant="h6" sx={{mb: 2}}>
                         Add a new account
                     </Typography>
