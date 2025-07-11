@@ -1,3 +1,4 @@
+import {JSX} from "react";
 import AccountBalanceWalletOutlinedIcon from '@mui/icons-material/AccountBalanceWalletOutlined';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -6,7 +7,6 @@ import CardHeader from '@mui/material/CardHeader';
 import Chip from '@mui/material/Chip';
 import Typography from '@mui/material/Typography';
 import {useTheme} from "@mui/material";
-import * as React from "react";
 
 interface AccountInfoCardProps {
     accountName: string,
@@ -36,7 +36,7 @@ const formatDate = (date?: Date): string => {
     }).format(date);
 }
 
-export const AccountInfoCard: React.FC<AccountInfoCardProps> = (
+export const AccountInfoCard = (
     {
         accountName,
         accountBalance,
@@ -44,9 +44,10 @@ export const AccountInfoCard: React.FC<AccountInfoCardProps> = (
         lastTransactionDate,
         accountNumber = "****1234",
         currency,
-    }) => {
+    }: AccountInfoCardProps): JSX.Element => {
 
     const theme = useTheme();
+
     return (
         <Card
             sx={{
@@ -93,5 +94,5 @@ export const AccountInfoCard: React.FC<AccountInfoCardProps> = (
             </CardContent>
         </Card>
     )
-}
+};
 

@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import AccountsPage from "./accounts/AccountsPage";
-import TransactionsPage from "./transactions/TransactionsPage";
+import AccountsSection from "./accounts/AccountsSection.tsx";
+import TransactionsSection from "./transactions/TransactionsSection.tsx";
 import App from "./App";
 
 const router = createBrowserRouter([
@@ -10,11 +10,11 @@ const router = createBrowserRouter([
   },
   {
     path: "accounts/:id",
-    element: <AccountsPage />,
+    element: <AccountsSection />,
     children: [
       {
         path: "transactions",
-        element: <TransactionsPage />,
+        element: <TransactionsSection />,
       },
     ],
   },
